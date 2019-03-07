@@ -1,0 +1,134 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "React.Json.Api", "React.Json.Api\React.Json.Api.csproj", "{9BCD1A89-139E-42D6-8FB9-287DA1984E8D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "React.Json.Domain", "React.Json.Domain\React.Json.Domain.csproj", "{732263B9-512B-414B-A322-67391B7B71FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "React.Json.Infra", "React.Json.Infra\React.Json.Infra.csproj", "{8CE047BC-11FC-4909-8C2F-EB81A24EB9B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "React.Json.IoC", "React.Json.IoC\React.Json.IoC.csproj", "{38502030-70C7-410E-AB41-4F776221D670}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "React.Json.AppServices", "React.Json.AppServices\React.Json.AppServices.csproj", "{28EA36A0-B8C7-44E4-BA2B-1E7DCC059686}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "React.Json.CrossCutting", "React.Json.CrossCutting\React.Json.CrossCutting.csproj", "{593403F3-C76B-48AF-8237-D0F4C08C5204}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "React.Json.SQL", "React.Json.SQL\React.Json.SQL.sqlproj", "{7C155A68-F4B4-4108-9BCF-644040CDB60E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "React.Json.Tests", "React.Json.Tests\React.Json.Tests.csproj", "{1D124A02-F24E-432F-AA42-F8114E6DCD01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		PROD|Any CPU = PROD|Any CPU
+		QA|Any CPU = QA|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BCD1A89-139E-42D6-8FB9-287DA1984E8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BCD1A89-139E-42D6-8FB9-287DA1984E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BCD1A89-139E-42D6-8FB9-287DA1984E8D}.PROD|Any CPU.ActiveCfg = PROD|Any CPU
+		{9BCD1A89-139E-42D6-8FB9-287DA1984E8D}.PROD|Any CPU.Build.0 = PROD|Any CPU
+		{9BCD1A89-139E-42D6-8FB9-287DA1984E8D}.QA|Any CPU.ActiveCfg = QA|Any CPU
+		{9BCD1A89-139E-42D6-8FB9-287DA1984E8D}.QA|Any CPU.Build.0 = QA|Any CPU
+		{9BCD1A89-139E-42D6-8FB9-287DA1984E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BCD1A89-139E-42D6-8FB9-287DA1984E8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{732263B9-512B-414B-A322-67391B7B71FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{732263B9-512B-414B-A322-67391B7B71FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{732263B9-512B-414B-A322-67391B7B71FB}.PROD|Any CPU.ActiveCfg = PROD|Any CPU
+		{732263B9-512B-414B-A322-67391B7B71FB}.PROD|Any CPU.Build.0 = PROD|Any CPU
+		{732263B9-512B-414B-A322-67391B7B71FB}.QA|Any CPU.ActiveCfg = QA|Any CPU
+		{732263B9-512B-414B-A322-67391B7B71FB}.QA|Any CPU.Build.0 = QA|Any CPU
+		{732263B9-512B-414B-A322-67391B7B71FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{732263B9-512B-414B-A322-67391B7B71FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE047BC-11FC-4909-8C2F-EB81A24EB9B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE047BC-11FC-4909-8C2F-EB81A24EB9B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE047BC-11FC-4909-8C2F-EB81A24EB9B0}.PROD|Any CPU.ActiveCfg = PROD|Any CPU
+		{8CE047BC-11FC-4909-8C2F-EB81A24EB9B0}.PROD|Any CPU.Build.0 = PROD|Any CPU
+		{8CE047BC-11FC-4909-8C2F-EB81A24EB9B0}.QA|Any CPU.ActiveCfg = QA|Any CPU
+		{8CE047BC-11FC-4909-8C2F-EB81A24EB9B0}.QA|Any CPU.Build.0 = QA|Any CPU
+		{8CE047BC-11FC-4909-8C2F-EB81A24EB9B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE047BC-11FC-4909-8C2F-EB81A24EB9B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38502030-70C7-410E-AB41-4F776221D670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38502030-70C7-410E-AB41-4F776221D670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38502030-70C7-410E-AB41-4F776221D670}.PROD|Any CPU.ActiveCfg = PROD|Any CPU
+		{38502030-70C7-410E-AB41-4F776221D670}.PROD|Any CPU.Build.0 = PROD|Any CPU
+		{38502030-70C7-410E-AB41-4F776221D670}.QA|Any CPU.ActiveCfg = QA|Any CPU
+		{38502030-70C7-410E-AB41-4F776221D670}.QA|Any CPU.Build.0 = QA|Any CPU
+		{38502030-70C7-410E-AB41-4F776221D670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38502030-70C7-410E-AB41-4F776221D670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28EA36A0-B8C7-44E4-BA2B-1E7DCC059686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28EA36A0-B8C7-44E4-BA2B-1E7DCC059686}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28EA36A0-B8C7-44E4-BA2B-1E7DCC059686}.PROD|Any CPU.ActiveCfg = PROD|Any CPU
+		{28EA36A0-B8C7-44E4-BA2B-1E7DCC059686}.PROD|Any CPU.Build.0 = PROD|Any CPU
+		{28EA36A0-B8C7-44E4-BA2B-1E7DCC059686}.QA|Any CPU.ActiveCfg = QA|Any CPU
+		{28EA36A0-B8C7-44E4-BA2B-1E7DCC059686}.QA|Any CPU.Build.0 = QA|Any CPU
+		{28EA36A0-B8C7-44E4-BA2B-1E7DCC059686}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28EA36A0-B8C7-44E4-BA2B-1E7DCC059686}.Release|Any CPU.Build.0 = Release|Any CPU
+		{593403F3-C76B-48AF-8237-D0F4C08C5204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{593403F3-C76B-48AF-8237-D0F4C08C5204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{593403F3-C76B-48AF-8237-D0F4C08C5204}.PROD|Any CPU.ActiveCfg = Debug|Any CPU
+		{593403F3-C76B-48AF-8237-D0F4C08C5204}.PROD|Any CPU.Build.0 = Debug|Any CPU
+		{593403F3-C76B-48AF-8237-D0F4C08C5204}.QA|Any CPU.ActiveCfg = Debug|Any CPU
+		{593403F3-C76B-48AF-8237-D0F4C08C5204}.QA|Any CPU.Build.0 = Debug|Any CPU
+		{593403F3-C76B-48AF-8237-D0F4C08C5204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{593403F3-C76B-48AF-8237-D0F4C08C5204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.PROD|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.PROD|Any CPU.Build.0 = Debug|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.PROD|Any CPU.Deploy.0 = Debug|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.QA|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.QA|Any CPU.Build.0 = Debug|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.QA|Any CPU.Deploy.0 = Debug|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C155A68-F4B4-4108-9BCF-644040CDB60E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1D124A02-F24E-432F-AA42-F8114E6DCD01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D124A02-F24E-432F-AA42-F8114E6DCD01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D124A02-F24E-432F-AA42-F8114E6DCD01}.PROD|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D124A02-F24E-432F-AA42-F8114E6DCD01}.PROD|Any CPU.Build.0 = Debug|Any CPU
+		{1D124A02-F24E-432F-AA42-F8114E6DCD01}.QA|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D124A02-F24E-432F-AA42-F8114E6DCD01}.QA|Any CPU.Build.0 = Debug|Any CPU
+		{1D124A02-F24E-432F-AA42-F8114E6DCD01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D124A02-F24E-432F-AA42-F8114E6DCD01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEA8F74C-CF93-40D3-8F17-F6F44A3B480B}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = React.Json.Api\\React.Json.Api.csproj
+		SccProjectName1 = React.Json.Api
+		SccLocalPath1 = React.Json.Api
+		SccProjectUniqueName2 = React.Json.Domain\\React.Json.Domain.csproj
+		SccProjectName2 = React.Json.Domain
+		SccLocalPath2 = React.Json.Domain
+		SccProjectUniqueName3 = React.Json.Infra\\React.Json.Infra.csproj
+		SccProjectName3 = React.Json.Infra
+		SccLocalPath3 = React.Json.Infra
+		SccProjectUniqueName4 = React.Json.IoC\\React.Json.IoC.csproj
+		SccProjectName4 = React.Json.IoC
+		SccLocalPath4 = React.Json.IoC
+		SccProjectUniqueName5 = React.Json.AppServices\\React.Json.AppServices.csproj
+		SccProjectName5 = React.Json.AppServices
+		SccLocalPath5 = React.Json.AppServices
+		SccProjectUniqueName6 = React.Json.CrossCutting\\React.Json.CrossCutting.csproj
+		SccProjectName6 = React.Json.CrossCutting
+		SccLocalPath6 = React.Json.CrossCutting
+		SccProjectUniqueName7 = React.Json.SQL\\React.Json.SQL.sqlproj
+		SccProjectName7 = React.Json.SQL
+		SccLocalPath7 = React.Json.SQL
+		SccProjectUniqueName8 = React.Json.Tests\\React.Json.Tests.csproj
+		SccProjectName8 = React.Json.Tests
+		SccLocalPath8 = React.Json.Tests
+	EndGlobalSection
+EndGlobal

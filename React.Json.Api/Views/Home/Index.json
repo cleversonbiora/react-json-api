@@ -1,0 +1,24 @@
+﻿{
+  "id": "content",
+  "type": "div",
+  "children": [
+    {
+      "type": "div",
+      "className": "row",
+      "children": [
+        {
+          "type": "div",
+          "className": "col-md-12",
+          "children": [
+            {
+              "type": "h1",
+              "className": "title",
+              "value": "Home"
+            },
+            { "template": 1 }
+          ]
+        }
+      ]
+    }
+  ]
+}

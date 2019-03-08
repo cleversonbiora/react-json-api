@@ -2,6 +2,7 @@
   "id": "content",
   "type": "div",
   "children": [
+    { "view": "Views/Shared/Topo.json" },
     {
       "type": "div",
       "className": "row",
@@ -11,7 +12,7 @@
           "className": "col-md-12",
           "children": [
             {
-              "type": "h1",
+              "type": "h2",
               "className": "title",
               "value": "Home"
             },

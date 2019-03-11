@@ -1,6 +1,6 @@
 ﻿{
   "layout": "Views/Shared/_Layout.json",
-  "title": "React > Angular",
+  "title": "React > Angular 6",
   "content": {
     "id": "content",
     "type": "div",
@@ -18,7 +18,8 @@
                 "type": "h2",
                 "className": "title",
                 "value": "Amendoim"
-              }
+              },
+              { "template" : 2 }
             ]
           }
         ]

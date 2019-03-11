@@ -47,6 +47,7 @@ namespace React.Json.Api.Controllers
             try
             {
                 string viewPath = "Views/";
+                string title = "Home";
                 try
                 {
                     if(String.IsNullOrWhiteSpace(command.PathName) || command.PathName.Equals("/"))
@@ -71,6 +72,10 @@ namespace React.Json.Api.Controllers
                 dynamic jsonPage = JsonConvert.DeserializeObject<dynamic>(page);
                 var id = jsonPage.layout;
                 var name = jsonPage.content;
+                if(!String.IsNullOrWhiteSpace((string)jsonPage.title))
+                {
+                    title = jsonPage.title;
+                }
                 if(!String.IsNullOrWhiteSpace((string)jsonPage.layout))
                 {
                     page = LoadView((string)jsonPage.layout);
@@ -99,7 +104,7 @@ namespace React.Json.Api.Controllers
                 page = LoadViews(page);
                 page = LoadTemplates(page);
                 dynamic a = JsonConvert.DeserializeObject(page);
-                return await Response(a, null);
+                return await Response(new { title = title, body = a}, null);
             }
             catch (Exception ex)
             {
@@ -126,7 +131,7 @@ namespace React.Json.Api.Controllers
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                 }
 

@@ -4,6 +4,7 @@
   "content": {
     "id": "content",
     "type": "div",
+    "style": {"color": "#f0f"},
     "children": [
       { "view": "Views/Shared/topo.json" },
       {
@@ -17,9 +18,8 @@
               {
                 "type": "h2",
                 "className": "title",
-                "value": "Home"
-              },
-              { "template": 1 }
+                "value": "Teste"
+              }
             ]
           }
         ]

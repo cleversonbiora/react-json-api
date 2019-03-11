@@ -3,28 +3,30 @@
   "className": "row",
   "children": [
     {
+      "type": "style",
+      "value": ".linkA { margin: 10px; }"
+    },
+    {
       "type": "div",
       "className": "col-md-12",
       "children": [
         {
-          "type": "h2",
-          "className": "title",
-          "value": "topo"
-        },
-        {
           "type": "Link",
+          "className": "linkA",
           "value": "Home",
           "to": "/"
         },
         {
           "type": "Link",
-          "value": "Azul",
-          "to": "/Teste/Azul"
+          "className": "linkA",
+          "value": "Amendoim",
+          "to": "/Home/Amendoim"
         },
         {
           "type": "Link",
-          "value": "Azul",
-          "to": "/Home/"
+          "className": "linkA",
+          "value": "Teste",
+          "to": "/Teste/"
         }
       ]
     }

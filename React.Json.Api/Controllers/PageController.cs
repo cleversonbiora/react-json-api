@@ -13,6 +13,9 @@ using React.Json.AppServices.Commands.Template;
 using React.Json.AppServices.ViewModels;
 using FluentValidator;
 using System.Text.RegularExpressions;
+using React.Json.AppServices.Commands.Page;
+using Newtonsoft.Json.Linq;
+using System.Dynamic;
 
 namespace React.Json.Api.Controllers
 {
@@ -38,32 +41,64 @@ namespace React.Json.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet, Route("v1/Page/{id:int}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpPost, Route("v1/Page")]
+        public async Task<IActionResult> GetPage([FromBody]GetPageCommand command)
         {
             try
             {
-                var layout = "";
-                using (StreamReader sr = new StreamReader(Path.GetFullPath("Views/Home/Index.json")))
+                string viewPath = "Views/";
+                try
                 {
-                    layout = sr.ReadToEnd();
-                }
-                var regex = new Regex(@"{\s*\""template""\s*:\s*[0-9]\s*}");
-                var regexId = new Regex(@"[0-9]+");
-                var matches = regex.Matches(layout);
-                foreach (var match in matches)
-                {
-                    var ids = regexId.Matches(match.ToString()).FirstOrDefault();
-                    if(Int32.TryParse(ids.Value.FirstOrDefault().ToString(),  out int templateId))
+                    if(String.IsNullOrWhiteSpace(command.PathName) || command.PathName.Equals("/"))
                     {
-                        TemplateViewModel temp = _TemplateAppService.GetById(templateId);
-                        if(temp != null)
+                        viewPath = "Views/Home/Index";
+                    }
+                    else if(command.PathName.Split('/', StringSplitOptions.RemoveEmptyEntries).Count() == 1)
+                    {
+                        viewPath = $"Views/{command.PathName.Replace("/","")}/Index";
+                    }
+                    else
+                    {
+                        var parts = command.PathName.Split('/', StringSplitOptions.RemoveEmptyEntries);
+                        viewPath = $"Views/{parts[0]}/{parts[1]}";
+                    }
+                }
+                catch (Exception)
+                {
+                    viewPath = "Views/Home/Index";
+                }
+                var page = LoadView(viewPath);
+                dynamic jsonPage = JsonConvert.DeserializeObject<dynamic>(page);
+                var id = jsonPage.layout;
+                var name = jsonPage.content;
+                if(!String.IsNullOrWhiteSpace((string)jsonPage.layout))
+                {
+                    page = LoadView((string)jsonPage.layout);
+                    if (jsonPage.content != null)
+                    {
+                        var regexView = new Regex(@"{\s*\""content\""\s*:\s*[\w-_""./]{1,}\s*\""\s*}");
+                        var matchesViews = regexView.Matches(page);
+                        foreach (var match in matchesViews)
                         {
-                            layout = layout.Replace(match.ToString(), JsonConvert.SerializeObject(temp.Json));
+                            page = page.Replace(match.ToString(), JsonConvert.SerializeObject(jsonPage.content));
                         }
                     }
                 }
-                dynamic a = JsonConvert.DeserializeObject(layout);
+                else if(!String.IsNullOrWhiteSpace(jsonPage.content))
+                {
+                    page = JsonConvert.SerializeObject(jsonPage.content);
+                }
+                else if (!String.IsNullOrWhiteSpace(jsonPage.type))
+                {
+                    page = JsonConvert.SerializeObject(jsonPage);
+                }
+                else
+                {
+                    return await Response(null, new List<Notification> { new Notification("Page", "Página Mal Formatada") });
+                }
+                page = LoadViews(page);
+                page = LoadTemplates(page);
+                dynamic a = JsonConvert.DeserializeObject(page);
                 return await Response(a, null);
             }
             catch (Exception ex)
@@ -72,127 +107,79 @@ namespace React.Json.Api.Controllers
             }
         }
 
-        /// <summary>
-        /// </summary>
-        /// <returns></returns>
-        //[HttpGet, Route("v1/Page")]
-        //public async Task<IActionResult> GetAll()
-        //{
-        //    try
-        //    {
-        //        var result = _PageAppService.GetAll();
+        private string LoadTemplates(string layout)
+        {
+            var regex = new Regex(@"{\s*\""template""\s*:\s*[0-9]\s*}");
+            var regexId = new Regex(@"[0-9]+");
+            var matches = regex.Matches(layout);
+            foreach (var match in matches)
+            {
+                try
+                {
+                    var ids = regexId.Matches(match.ToString()).FirstOrDefault();
+                    if (int.TryParse(ids.Value.FirstOrDefault().ToString(), out int templateId))
+                    {
+                        TemplateViewModel temp = _TemplateAppService.GetById(templateId);
+                        if (temp != null)
+                        {
+                            layout = layout.Replace(match.ToString(), JsonConvert.SerializeObject(temp.Json));
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                }
 
-        //        return await Response(result, null);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return await Response(null, new List<Notification> { new Notification("Page", ex.Message) });
-        //    }
-        //}
+            }
 
-        /// <summary>
-        /// </summary>
-        /// <returns></returns>
-        //[HttpGet, Route("v1/Page/grid")]
-        //public async Task<IActionResult> GetAllGrid()
-        //{
-        //    try
-        //    {
-        //        var result = _PageAppService.GetAllGrid();
+            return layout;
+        }
 
-        //        return await Response(result, null);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return await Response(null, new List<Notification> { new Notification("Page", ex.Message) });
-        //    }
-        //}
+        private static string LoadViews(string layout)
+        {
+            var regexView = new Regex(@"{\s*\""view\""\s*:\s*[\w-_""./]{1,}\s*\""\s*}");
+            var matchesViews = regexView.Matches(layout);
+            foreach (var match in matchesViews)
+            {
+                try
+                {
+                    dynamic jsonView = JsonConvert.DeserializeObject<dynamic>(match.ToString());
+                    string path = jsonView.view;
+                    string view = LoadView(path);
+                    if (view != "")
+                    {
+                        layout = layout.Replace(match.ToString(), view);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+            }
 
-        /// <summary>
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
-        //[HttpPost, Route("v1/Page")]
-        //public async Task<IActionResult> Post([FromBody]InsertPageCommand command)
-        //{
-        //    if (command == null)
-        //        return await Response(null, new List<Notification> { new Notification("Page", "Page inválido") });
+            return layout;
+        }
 
-        //    try
-        //    {
-        //        var contract = new PageContract(command);
+        private static string LoadView(string path)
+        {
+            try
+            {
+                var ext = Path.GetExtension(path);
+                if (String.IsNullOrEmpty(ext))
+                    path = $"{path}.json";
+                if (path.StartsWith("/"))
+                    path = path.Substring(1);
+                var view = "";
+                using (StreamReader sr = new StreamReader(Path.GetFullPath(path)))
+                {
+                    view = sr.ReadToEnd();
+                }
+                return view;
+            }
+            catch (Exception)
+            {
+                return "{ \"type\": \"div\", \"value\": \"View Not Found\" }";
+            }
 
-        //        if (contract.Contract.Invalid)
-        //        {
-        //            Logger.Warning("Permissão: Page, incluir com erros", JsonConvert.SerializeObject(command), JsonConvert.SerializeObject(contract.Contract.Notifications));
-        //            return await Response(command, contract.Contract.Notifications);
-        //        }
-
-        //        var result = _PageAppService.Insert(command);
-
-        //        return await Response(result, contract.Contract.Notifications);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return await Response(null, new List<Notification> { new Notification("Page", ex.Message) });
-        //    }
-        //}
-
-        /// <summary>
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
-        //[HttpPut, Route("v1/Page")]
-        //public async Task<IActionResult> Put([FromBody]UpdatePageCommand command)
-        //{
-        //    try
-        //    {
-        //        if (command == null)
-        //            return await Response(null, new List<Notification> { new Notification("Page", "Page inválido") });
-
-        //        var contract = new PageContract(command);
-
-        //        if (contract.Contract.Invalid)
-        //        {
-        //            return await Response(command, contract.Contract.Notifications);
-        //        }
-
-        //        var result = _PageAppService.Update(command);
-
-        //        return await Response(result, contract.Contract.Notifications);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return await Response(null, new List<Notification> { new Notification("Page", ex.Message) });
-        //    }
-        //}
-
-
-        ///// <summary>
-        ///// </summary>
-        ///// <param name="id"></param>
-        ///// <returns></returns>
-        //[HttpDelete, Route("v1/Page/{id:int}")]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    try
-        //    {
-        //        var contract = new PageContract(id);
-
-        //        if (contract.Contract.Invalid)
-        //        {
-        //            return await Response(id, contract.Contract.Notifications);
-        //        }
-
-        //        var result = _PageAppService.Delete(id);
-
-        //        return await Response(result, contract.Contract.Notifications);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.Error("Permissão: Page, excluir", ex, JsonConvert.SerializeObject(id));
-        //        return await Response(null, new List<Notification> { new Notification("Page", ex.Message) });
-        //    }
-        //}
+        }
     }
 }

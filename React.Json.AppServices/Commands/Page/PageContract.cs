@@ -20,8 +20,14 @@ namespace React.Json.AppServices.Commands.Page
             .Requires()
             .IsGreaterThan(1, 0, "Id", "O campo Id é obrigatório");
         }
-		
-		public PageContract(int id)
+
+        public PageContract(GetPageCommand command)
+        {
+            Contract = new ValidationContract()
+            .Requires();
+        }
+
+        public PageContract(int id)
         {
             Contract = new ValidationContract()
             .Requires()

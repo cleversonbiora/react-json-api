@@ -1,0 +1,18 @@
+{
+  "type": "div",
+  "className": "row",
+  "children": [
+    {
+      "type": "div",
+      "className": "col-md-12",
+      "children": [
+        {
+          "type": "h1",
+          "className": "title",
+          "value": "react-json-page"
+        },
+        { "content":  "" }
+      ]
+    }
+  ]
+}

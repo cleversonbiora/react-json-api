@@ -1,25 +1,28 @@
 ﻿{
-  "id": "content",
-  "type": "div",
-  "children": [
-    { "view": "Views/Shared/Topo.json" },
-    {
-      "type": "div",
-      "className": "row",
-      "children": [
-        {
-          "type": "div",
-          "className": "col-md-12",
-          "children": [
-            {
-              "type": "h2",
-              "className": "title",
-              "value": "Home"
-            },
-            { "template": 1 }
-          ]
-        }
-      ]
-    }
-  ]
+  "layout": "Views/Shared/_Layout.json",
+  "content": {
+    "id": "content",
+    "type": "div",
+    "children": [
+      { "view": "Views/Shared/topo.json" },
+      {
+        "type": "div",
+        "className": "row",
+        "children": [
+          {
+            "type": "div",
+            "className": "col-md-12",
+            "children": [
+              {
+                "type": "h2",
+                "className": "title",
+                "value": "Home"
+              },
+              { "template": 1 }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
